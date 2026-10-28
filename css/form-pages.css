@@ -11,6 +11,27 @@ body {
   min-height: 100%;
   background: #fff;
   color: #374151;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+}
+body:not(.gate-page),
+body:not(.gate-page) button,
+body:not(.gate-page) a,
+body:not(.gate-page) input,
+body:not(.gate-page) p,
+body:not(.gate-page) h1,
+body:not(.gate-page) h2,
+body:not(.gate-page) h3,
+body:not(.gate-page) span,
+body:not(.gate-page) .form-btn,
+body:not(.gate-page) .form-result-cta,
+body:not(.gate-page) .form-question,
+body:not(.gate-page) .form-main-title,
+body:not(.gate-page) .form-instruction,
+body:not(.gate-page) .quiz-text-btn,
+body:not(.gate-page) .offer-headline,
+body:not(.gate-page) .offer-copy,
+body:not(.gate-page) .result-heading {
+  font-family: "Outfit", "Segoe UI", sans-serif;
 }
 main {
   flex: 1 0 auto;
@@ -19,20 +40,230 @@ main {
   min-height: 100dvh;
 }
 
-/* Gate (html1): vertically center title + CTA in the viewport */
-body.gate-page main {
+/* ========== Gate page (html1) — polished first screen ========== */
+body.gate-page {
+  --gate-ink: #1a2b3c;
+  --gate-muted: #5a6b7c;
+  --gate-blue: #0b6eb8;
+  --gate-blue-deep: #085a98;
+  --gate-wash: #e8f1f8;
+  --gate-wash-2: #f4f7fa;
+  position: relative;
+  overflow-x: hidden;
+  background: var(--gate-wash-2);
+  color: var(--gate-ink);
+  font-family: "Outfit", "Segoe UI", sans-serif;
+}
+
+body.gate-page .gate-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #c5dff0 0%, transparent 55%),
+    radial-gradient(90% 70% at 100% 100%, #d7e8f4 0%, transparent 50%),
+    radial-gradient(80% 60% at 0% 80%, #e6eef5 0%, transparent 45%),
+    linear-gradient(180deg, #eef5fa 0%, #f7fafc 48%, #eef3f7 100%);
+}
+
+body.gate-page .gate-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0.55;
+  animation: gate-orb-drift 14s ease-in-out infinite alternate;
+}
+body.gate-page .gate-orb--a {
+  width: min(70vw, 420px);
+  height: min(70vw, 420px);
+  top: 8%;
+  left: -12%;
+  background: #9ec9e8;
+}
+body.gate-page .gate-orb--b {
+  width: min(60vw, 360px);
+  height: min(60vw, 360px);
+  right: -10%;
+  bottom: 18%;
+  background: #b8d4e8;
+  animation-delay: -4s;
+  animation-duration: 18s;
+}
+body.gate-page .gate-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+@keyframes gate-orb-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(18px, 22px, 0) scale(1.06);
+  }
+}
+
+body.gate-page .gate-main,
+body.gate-page main.gate-main {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+  align-items: center;
   box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 2rem 1.25rem;
   padding-bottom: 0;
 }
-body.gate-page .form-main-title {
+
+body.gate-page .gate-stage {
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
   text-align: center;
 }
-body.gate-page .form-container {
+
+body.gate-page .gate-brand,
+body.gate-page .gate-title,
+body.gate-page .gate-kicker,
+body.gate-page .gate-cta {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: gate-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+body.gate-page .gate-brand {
+  animation-delay: 0.05s;
+}
+body.gate-page .gate-title {
+  animation-delay: 0.16s;
+}
+body.gate-page .gate-kicker {
+  animation-delay: 0.28s;
+}
+body.gate-page .gate-cta {
+  animation-delay: 0.4s;
+}
+
+@keyframes gate-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.gate-page .gate-brand {
+  margin: 0 0 1.25rem;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gate-blue);
+}
+
+body.gate-page .form-main-title.gate-title,
+body.gate-page .gate-title {
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.85rem, 6.2vw, 2.75rem);
+  font-weight: 700;
+  font-optical-sizing: auto;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--gate-ink);
+  text-align: center;
+}
+
+body.gate-page .form-question.gate-kicker,
+body.gate-page .gate-kicker {
+  margin: 1.35rem 0 0;
+  padding: 0;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-size: clamp(1.05rem, 3.4vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--gate-muted);
+}
+
+body.gate-page .form-buttons.gate-cta,
+body.gate-page .gate-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
   width: 100%;
+  margin-top: 1.75rem;
+  padding: 0;
+}
+
+body.gate-page .form-btn.gate-btn,
+body.gate-page .gate-btn {
+  width: 100%;
+  max-width: 28rem;
+  padding: 1.65rem 2rem;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-size: clamp(2rem, 7vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #fff;
+  background: linear-gradient(180deg, #1280d0 0%, var(--gate-blue) 100%);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(11, 110, 184, 0.28);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+body.gate-page .gate-btn:hover {
+  background: linear-gradient(180deg, #1590e4 0%, var(--gate-blue-deep) 100%);
+  box-shadow: 0 12px 32px rgba(11, 110, 184, 0.34);
+  transform: translateY(-1px);
+}
+body.gate-page .gate-btn:active {
+  transform: translateY(1px) scale(0.99);
+  box-shadow: 0 6px 16px rgba(11, 110, 184, 0.22);
+}
+
+body.gate-page .form-instruction.gate-note,
+body.gate-page .gate-note {
+  margin: 0;
+  padding: 0;
+  font-family: "Outfit", "Segoe UI", sans-serif;
+  font-size: clamp(1.15rem, 3.8vw, 1.4rem);
+  font-weight: 600;
+  color: var(--gate-muted);
+}
+
+body.gate-page .footer {
+  position: relative;
+  z-index: 1;
+  background: rgba(247, 250, 252, 0.92);
+  border-top-color: #d5dee8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.gate-page .gate-orb {
+    animation: none;
+  }
+  body.gate-page .gate-brand,
+  body.gate-page .gate-title,
+  body.gate-page .gate-kicker,
+  body.gate-page .gate-cta {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
 
 .footer {
@@ -286,9 +517,12 @@ body.gate-page .form-container {
     display: block;
     padding-bottom: 0.5rem;
   }
-  body.gate-page main {
+  body.gate-page main,
+  body.gate-page .gate-main {
     display: flex !important;
     justify-content: center;
+    align-items: center;
+    padding: 1.75rem 1.15rem !important;
     padding-bottom: 0 !important;
   }
   .form-header-bar {
@@ -331,26 +565,38 @@ body.gate-page .form-container {
   body:not(.gate-page) .form-main-title {
     display: none;
   }
-  body.gate-page .form-main-title {
+  body.gate-page .form-main-title.gate-title,
+  body.gate-page .gate-title {
     display: block;
     text-align: center;
-    font-size: 30px !important;
-    line-height: 1.3 !important;
-    padding: 16px 16px 14px !important;
+    font-size: clamp(1.85rem, 7vw, 2.35rem) !important;
+    line-height: 1.18 !important;
+    padding: 0 !important;
   }
-  body.gate-page .form-divider {
-    margin: 0;
+  body.gate-page .form-question.gate-kicker,
+  body.gate-page .gate-kicker {
+    margin-top: 1.15rem !important;
+    padding: 0 !important;
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
   }
-  body.gate-page .form-container {
-    padding: 10px 1rem 1rem !important;
+  body.gate-page .form-buttons.gate-cta,
+  body.gate-page .gate-cta {
+    gap: 0.85rem !important;
+    margin-top: 1.5rem !important;
+    padding: 0 !important;
   }
-  body.gate-page .form-question {
-    padding: 10px 0 10px !important;
-    margin: 0 !important;
+  body.gate-page .form-btn.gate-btn,
+  body.gate-page .gate-btn {
+    padding: 1.55rem 1.75rem !important;
+    font-size: 2.25rem !important;
+    border-radius: 14px !important;
   }
-  body.gate-page .form-buttons {
-    gap: 10px !important;
-    padding: 0 0 8px !important;
+  body.gate-page .form-instruction.gate-note,
+  body.gate-page .gate-note {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    padding: 0 !important;
   }
   .offer-headline {
     margin: 4px auto 2px;

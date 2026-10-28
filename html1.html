@@ -9,6 +9,13 @@
     <link rel="icon" href="./images/new-logo.png" type="image/png" />
     <link rel="shortcut icon" href="./images/new-logo.png" type="image/png" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=AW-16921817895"
@@ -30,7 +37,7 @@
     <script src="./js/bootstrap.js?v=5"></script>
 
     <link rel="stylesheet" href="./css/app.css" />
-    <link rel="stylesheet" href="./css/form-pages.css?v=20261029e" />
+    <link rel="stylesheet" href="./css/form-pages.css?v=20261029i" />
   </head>
 
   <body class="gate-page">
@@ -43,20 +50,24 @@
       ></iframe
     ></noscript>
 
-    <main>
-      <h1 class="form-main-title">
-        Check If You Qualify For Plans As Low As $2/Day
-      </h1>
+    <div class="gate-atmosphere" aria-hidden="true">
+      <span class="gate-orb gate-orb--a"></span>
+      <span class="gate-orb gate-orb--b"></span>
+      <span class="gate-grain"></span>
+    </div>
 
-      <div class="form-divider"></div>
-
-      <div class="form-container">
-        <p class="form-question">Check Your Eligibility</p>
-        <div class="form-buttons">
-          <button type="button" class="form-btn" id="get-started-btn">
+    <main class="gate-main">
+      <div class="gate-stage">
+        <p class="gate-brand">Daily Savers</p>
+        <h1 class="form-main-title gate-title">
+          Check If You Qualify For Plans As Low As $2/Day
+        </h1>
+        <p class="form-question gate-kicker">Check Your Eligibility</p>
+        <div class="form-buttons gate-cta">
+          <button type="button" class="form-btn gate-btn" id="get-started-btn">
             Get Started
           </button>
-          <p class="form-instruction">It's Free To Check</p>
+          <p class="form-instruction gate-note">It's Free To Check</p>
         </div>
       </div>
     </main>
