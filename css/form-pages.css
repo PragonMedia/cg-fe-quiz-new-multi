@@ -18,6 +18,23 @@ main {
   min-height: 100vh;
   min-height: 100dvh;
 }
+
+/* Gate (html1): vertically center title + CTA in the viewport */
+body.gate-page main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding-bottom: 0;
+}
+body.gate-page .form-main-title {
+  text-align: center;
+}
+body.gate-page .form-container {
+  width: 100%;
+}
+
 .footer {
   position: relative;
   flex-shrink: 0;
@@ -269,6 +286,11 @@ main {
     display: block;
     padding-bottom: 0.5rem;
   }
+  body.gate-page main {
+    display: flex !important;
+    justify-content: center;
+    padding-bottom: 0 !important;
+  }
   .form-header-bar {
     padding: 12px 16px;
   }
@@ -308,12 +330,6 @@ main {
   body:not(.gate-page) .form-header-bar,
   body:not(.gate-page) .form-main-title {
     display: none;
-  }
-  body.gate-page .form-header-bar {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding: 12px 16px;
   }
   body.gate-page .form-main-title {
     display: block;
